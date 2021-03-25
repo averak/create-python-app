@@ -14,6 +14,8 @@ CLI tool to quickstart Python app.
 $ git clone <this repo>
 $ cd <this repo>
 
+$ pip install wheel
+$ python setup.py sdist bdist_wheel
 $ pip install -e .
 ```
 
@@ -24,7 +26,7 @@ $ create-python-app
 app name : <app name>
 author : <author name>
 description : <app description>
-app versino : <app version>
+app version : <app version>
 python version : <python version>
 Created <app name> app.
 ```
