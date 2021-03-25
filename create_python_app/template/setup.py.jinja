@@ -1,0 +1,22 @@
+from setuptools import setup, find_packages
+
+try:
+    long_description = open("README.rst").read()
+except IOError:
+    long_description = ""
+
+setup(
+    name="{{ info.app_name }}",
+    version="{{ info.app_version }}",
+    description="{{ info.description }}",
+    license="MIT",
+    author="{{ info.author }}",
+    packages=find_packages(),
+    package_data={},
+    install_requires=[],
+    long_description=long_description,
+    classifiers=[
+        "Programming Language :: Python",
+        "Programming Language :: Python :: {{ info.python_version }}",
+    ],
+)
