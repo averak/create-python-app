@@ -13,7 +13,7 @@ setup(
     author="averak",
     packages=find_packages(),
     package_data={'create_python_app': ['template']},
-    install_requires=[],
+    install_requires=["jinja2"],
     long_description=long_description,
     classifiers=[
         "Programming Language :: Python",
