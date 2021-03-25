@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'create_python_app=create_python_app.core:main',
+            'create-python-app=create_python_app.core:main',
         ]
     },
 )

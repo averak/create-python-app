@@ -28,3 +28,19 @@ app versino : <app version>
 python version : <python version>
 Created <app name> app.
 ```
+
+### Created Project
+
+```
+<app name>
+├── .gitignore
+├── LICENSE
+├── Pipfile
+├── README.md
+├── core
+│   └── __init__.py
+├── main.py
+├── setup.py
+└── tests
+    └── .keep
+```
