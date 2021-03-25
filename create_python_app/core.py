@@ -1,5 +1,8 @@
+import os
 import sys
 import re
+import glob
+import shutil
 import datetime
 from jinja2 import Environment, FileSystemLoader
 
@@ -19,12 +22,12 @@ def input_info(default_str: str, input_guide, validation):
                 print(message.ERROR_INVALID_INPUT_MSG)
 
     except KeyboardInterrupt:
-        print(message.ERROR_KEYBOARD_INTERRUPT)
+        print(message.ERROR_KEYBOARD_INTERRUPT_MSG)
         sys.exit(1)
 
 
 def main():
-    app_info: info.AppInfo = info.AppInfo()
+    app_info = info.AppInfo()
 
     # input info
     app_info.app_name = input_info(
@@ -54,9 +57,35 @@ def main():
     )
     app_info.year = get_default_year()
 
+    # create app dir
+    template_root_path: str = os.path.join(os.path.dirname(__file__), 'template')
+    app_root_path: str = app_info.app_name.replace(' ', '_')
+    if os.path.exists(app_root_path):
+        print(message.ERROR_APP_EXISTS_MSG(app_info.app_name))
+        sys.exit(1)
+    shutil.copytree(template_root_path, app_root_path)
+
+    # specify PATH of the template files
+    file_loader = FileSystemLoader(app_root_path)
+    env = Environment(loader=file_loader)
+
+    # overwrite template files
+    for file_name in glob.glob(app_root_path + '/**/*.jinja', recursive=True):
+        template = env.get_template(os.path.basename(file_name))
+        save_file_name = file_name.replace('.jinja', '')
+
+        # write
+        with open(save_file_name, 'w') as file:
+            file.write(template.render(info=app_info))
+        # delete template file
+        os.remove(file_name)
+
+    # successful
+    print(message.CREATED_APP_MSG(app_info.app_name))
+
 
 def is_correct_app_name(app_name: str) -> bool:
-    return app_name != ''
+    return re.fullmatch(r'[0-9a-zA-Z][0-9a-zA-Z_\- ]*', app_name)
 
 
 def is_correct_author(author: str) -> bool:
@@ -97,6 +126,3 @@ def get_default_python_version() -> str:
 
 def get_default_year() -> str:
     return datetime.date.today().year
-
-
-main()

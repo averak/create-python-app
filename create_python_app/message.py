@@ -5,13 +5,8 @@ class FontColors:
     RESET: str = '\x1b[0m'
 
 
-def CREATED_FILE_MSG(file_name: str) -> str:
-    result: str = 'Created ' + file_name + ' .'
-    return result
-
-
-def OVERWRITTEN_FILE_MSG(file_name: str) -> str:
-    result: str = 'Overwritten ' + file_name + ' .'
+def CREATED_APP_MSG(app_name: str) -> str:
+    result: str = 'Created ' + app_name + ' app.'
     return result
 
 
@@ -21,10 +16,19 @@ ERROR_INVALID_INPUT_MSG: str = '%sInvalid format. Try again.%s' % (
 )
 
 
-ERROR_KEYBOARD_INTERRUPT: str = '%sKeyboad Interrupt.%s' % (
+ERROR_KEYBOARD_INTERRUPT_MSG: str = '%sKeyboad Interrupt.%s' % (
     FontColors.RED,
     FontColors.RESET,
 )
+
+
+def ERROR_APP_EXISTS_MSG(app_name: str) -> str:
+    result: str = '%s%s app is already exists. Try again.%s' % (
+        FontColors.RED,
+        app_name,
+        FontColors.RESET,
+    )
+    return result
 
 
 def APP_NAME_INPUT_GUIDE(default_str: str) -> str:
