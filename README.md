@@ -16,3 +16,15 @@ $ cd <this repo>
 
 $ pip install -e .
 ```
+
+## Usage
+
+```sh
+$ create-python-app
+app name : <app name>
+author : <author name>
+description : <app description>
+app versino : <app version>
+python version : <python version>
+Created <app name> app.
+```
