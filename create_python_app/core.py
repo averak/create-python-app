@@ -80,6 +80,10 @@ def main():
         # delete template file
         os.remove(file_name)
 
+    # delete .keep
+    for file_name in glob.glob(app_root_path + '/**/*.keep', recursive=True):
+        os.remove(file_name)
+
     # successful
     print(message.CREATED_APP_MSG(app_info.app_name))
 

@@ -44,5 +44,4 @@ Created <app name> app.
 ├── main.py
 ├── setup.py
 └── tests
-    └── .keep
 ```
