@@ -89,7 +89,7 @@ def main():
 
 
 def is_correct_app_name(app_name: str) -> bool:
-    return re.fullmatch(r'[0-9a-zA-Z][0-9a-zA-Z_\- ]*', app_name)
+    return re.fullmatch(r'[0-9a-zA-Z][0-9a-zA-Z_\- ]*', app_name) is not None
 
 
 def is_correct_author(author: str) -> bool:
@@ -101,11 +101,11 @@ def is_correct_description(description: str) -> bool:
 
 
 def is_correct_app_version(app_version: str) -> bool:
-    return re.fullmatch(r'([1-9]\d{0,4}|0)(\.(([1-9]\d{0,4})|0)){0,3}$', app_version)
+    return re.fullmatch(r'([1-9]\d{0,4}|0)(\.(([1-9]\d{0,4})|0)){0,3}$', app_version) is not None
 
 
 def is_correct_python_version(python_version: str) -> bool:
-    return re.fullmatch(r'([1-9]\d{0,4}|0)(\.(([1-9]\d{0,4})|0)){0,3}$', python_version)
+    return re.fullmatch(r'([1-9]\d{0,4}|0)(\.(([1-9]\d{0,4})|0)){0,3}$', python_version) is not None
 
 
 def get_default_app_name() -> str:
@@ -128,5 +128,5 @@ def get_default_python_version() -> str:
     return '%s.%s' % (sys.version_info.major, sys.version_info.minor)
 
 
-def get_default_year() -> str:
+def get_default_year() -> int:
     return datetime.date.today().year
